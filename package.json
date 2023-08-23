@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server",
-    "dev": "nodemon server"
+    "start": "./node_modules/.bin/netlify-lambda serve src",
+    "build": "./node_modules/.bin/netlify-lambda build src"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +18,7 @@
     "express-session": "^1.17.3",
     "mongodb": "^5.6.0",
     "mongoose": "^7.3.0",
+    "netlify-lambda": "^2.0.16",
     "serverless-http": "^3.2.0"
   },
   "keywords": [],

@@ -6,7 +6,6 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const path = require("path");
 const session = require("express-session");
-const serverless = require("serverless-http");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -363,5 +362,3 @@ var port = 5000;
 app.listen(port, () => {
   console.log("Server is running on " + port);
 });
-
-export const handler = serverless(app);
