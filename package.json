@@ -2,6 +2,9 @@
   "name": "pokemon-html-mongo",
   "version": "1.0.0",
   "main": "server.js",
+  "engines": {
+    "node": ">14 <15"
+  },
   "scripts": {
     "start": "node server.js"
   },
