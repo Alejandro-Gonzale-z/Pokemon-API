@@ -1,11 +1,13 @@
 const express = require("express");
-const app = express();
-const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const session = require("express-session");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const path = require("path");
-const session = require("express-session");
+const MongoStore = require("connect-mongo")(session);
+const mongoose = require("mongoose");
+
+const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -13,20 +15,23 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, "css")));
 dotenv.config();
 
-app.use(
-  session({
-    secret: "secret-key",
-    resave: false,
-    saveUninitialized: true,
-  })
-);
-
 mongoose.connect(
   `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_host}`,
   {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   }
+);
+
+app.use(
+  session({
+    secret: "secret-key",
+    resave: false,
+    saveUninitialized: true,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection
+    })
+  })
 );
 
 const PokedexSchema = {
