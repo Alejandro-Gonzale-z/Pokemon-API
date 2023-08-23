@@ -357,8 +357,4 @@ app.post("/login", function (req, res) {
   }
 });
 
-// starts server
-var port = 5000;
-app.listen(port, () => {
-  console.log("Server is running on " + port);
-});
+module.exports = app;
